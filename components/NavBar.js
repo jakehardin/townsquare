@@ -21,7 +21,14 @@ export default function NavBar() {
             <li className="nav-item">
               <Link passHref href="/">
                 <a className="nav-link">
-                  Home
+                  My Stories
+                </a>
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link passHref href="/topics">
+                <a className="nav-link">
+                  Topics
                 </a>
               </Link>
             </li>

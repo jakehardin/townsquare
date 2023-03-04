@@ -1,26 +1,33 @@
-import { signOut } from '../utils/auth';
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect, useState } from 'react';
+import Link from 'next/link';
+import { Button } from 'react-bootstrap';
+import { getStories } from '../api/storiesData';
+import StoryCard from '../components/StoryCard';
 import { useAuth } from '../utils/context/authContext';
 
-function Home() {
+export default function MainPage() {
+  const [stories, setStories] = useState([]);
   const { user } = useAuth();
 
+  const getAllStories = () => {
+    getStories(user.uid).then(setStories);
+  };
+  useEffect(() => {
+    getAllStories();
+  }, []);
   return (
-    <div
-      className="text-center d-flex flex-column justify-content-center align-content-center"
-      style={{
-        height: '90vh',
-        padding: '30px',
-        maxWidth: '400px',
-        margin: '0 auto',
-      }}
-    >
-      <h1>Hello {user.displayName}! </h1>
-      <p>Click the button below to logout!</p>
-      <button className="btn btn-danger btn-lg copy-btn" type="button" onClick={signOut}>
-        Sign Out
-      </button>
+    <div className="text-left my-4">
+      <Link href="/story/new" passHref>
+        <Button>+ Add A Story</Button>
+      </Link>
+      <div className="d-flex flex-wrap">
+        {/* TODO: map over books here using BookCard component */}
+        {stories.map((story) => (
+          <StoryCard key={story.firebaseKey} storyObj={story} onUpdate={getAllStories} />
+        ))}
+      </div>
+
     </div>
   );
 }
-
-export default Home;
