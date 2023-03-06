@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Card } from 'react-bootstrap';
+import { Card, Button } from 'react-bootstrap';
+import Link from 'next/link';
 // eslint-disable-next-line import/named
 
 export default function TopicCard({ topicObj }) {
@@ -9,6 +10,9 @@ export default function TopicCard({ topicObj }) {
       <Card style={{ width: '18rem', margin: '10px' }}>
         <Card.Body>
           <Card.Title>{topicObj.topic_name}</Card.Title>
+          <Link href="/" passHref>
+            <Button>View Stories</Button>
+          </Link>
         </Card.Body>
       </Card>
     </>

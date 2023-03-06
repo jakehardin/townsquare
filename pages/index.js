@@ -17,7 +17,7 @@ export default function MainPage() {
     getAllStories();
   }, []);
   return (
-    <div className="text-left my-4">
+    <div className="text-center my-4">
       <Link href="/story/new" passHref>
         <Button>+ Add A Story</Button>
       </Link>
