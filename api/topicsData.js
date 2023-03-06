@@ -1,0 +1,38 @@
+import { clientCredentials } from '../utils/client';
+
+const endpoint = clientCredentials.databaseURL;
+
+const getTopics = () => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/topics.json`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      if (data) {
+        resolve(Object.values(data));
+      } else {
+        resolve([]);
+      }
+    })
+    .catch(reject);
+});
+
+const getSingleTopic = (firebaseKey) => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/topics/${firebaseKey}.json`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => resolve((data)))
+    .catch(reject);
+});
+
+export {
+  getTopics,
+  getSingleTopic,
+};
