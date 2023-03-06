@@ -18,6 +18,7 @@ export default function StoryCard({ storyObj, onUpdate }) {
         <Card.Body>
           <Card.Title>{storyObj.title}</Card.Title>
           <Card.Text>{storyObj.location}</Card.Text>
+          <Card.Text>{storyObj.description}</Card.Text>
           <Link href={`/story/${storyObj.firebaseKey}`} passHref>
             <Button variant="primary" className="m-2">VIEW</Button>
           </Link>
