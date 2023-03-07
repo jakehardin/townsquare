@@ -2,8 +2,8 @@ import { getStoryComments, getSingleStory } from './storiesData';
 
 const viewPostDetails = (storyFirebaseKey) => new Promise((resolve, reject) => {
   Promise.all([getSingleStory(storyFirebaseKey), getStoryComments(storyFirebaseKey)])
-    .then(([authorObject, authorBooksArray]) => {
-      resolve({ ...authorObject, books: authorBooksArray });
+    .then(([storyObject, storyCommentsArray]) => {
+      resolve({ ...storyObject, comments: storyCommentsArray });
     }).catch((error) => reject(error));
 });
 
