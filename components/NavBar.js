@@ -1,9 +1,12 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
 import Link from 'next/link';
-import { signOut } from '../utils/auth';
+import { Navbar } from 'react-bootstrap';
+import Image from 'next/image';
+import { useAuth } from '../utils/context/authContext';
 
 export default function NavBar() {
+  const { user } = useAuth();
   return (
     <nav className="navbar navbar-expand-md navbar-dark bg-dark">
       <div className="container-fluid">
@@ -31,9 +34,11 @@ export default function NavBar() {
                 </a>
               </Link>
             </li>
-            <button type="button" className="btn btn-danger" onClick={signOut}>
-              Sign Out
-            </button>
+            <Link passHref href="/profile">
+              <Navbar.Brand className="navbar-brand" style={{ marginLeft: '1050px' }}>
+                <Image src={user.photoURL} alt="userURL" width="40%" height="40%" id="navbar-profile-image" />
+              </Navbar.Brand>
+            </Link>
           </ul>
         </div>
       </div>
