@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { Button } from 'react-bootstrap';
 import { viewPostDetails } from '../../api/mergedData';
 import CommentCard from '../../components/CommentCard';
+import CommentForm from '../../components/forms/CommentForm';
 
 export default function ViewPost() {
   const [postDetails, setPostDetails] = useState({});
@@ -47,6 +48,12 @@ export default function ViewPost() {
         {postDetails.comments?.map((comment) => (
           <CommentCard key={comment.story_id} commentObj={comment} onUpdate={seeThePostDetails} />
         ))}
+      </div>
+      <div style={{
+        backgroundColor: '#F8F8F8',
+      }}
+      >
+        <CommentForm onUpdate={seeThePostDetails} />
       </div>
     </>
   );

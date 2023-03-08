@@ -1,25 +1,34 @@
-import React, { useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import FloatingLabel from 'react-bootstrap/FloatingLabel';
-import Form from 'react-bootstrap/Form';
-import { Button } from 'react-bootstrap';
+import {
+  Button, Card, FloatingLabel, Form, Stack,
+} from 'react-bootstrap';
+import { useRouter } from 'next/router';
 import { useAuth } from '../../utils/context/authContext';
 import { createComment, updateComment } from '../../api/commentsData';
+import { getStories } from '../../api/storiesData';
 
 const initialState = {
-  name: '',
-  timestamp: '',
   description: '',
 };
 
-function CommentForm({ obj }) {
+export default function CommentForm({ obj, onUpdate }) {
   const [formInput, setFormInput] = useState(initialState);
-  const router = useRouter();
+  const [, setStories] = useState([]);
   const { user } = useAuth();
+  const router = useRouter();
   const { firebaseKey } = router.query;
 
+  const time = new Date().toLocaleString('en-US', {
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+    hour: 'numeric',
+    minute: '2-digit',
+  });
+
   useEffect(() => {
+    getStories().then(setStories);
     if (obj.firebaseKey) setFormInput(obj);
   }, [obj, user]);
 
@@ -35,76 +44,55 @@ function CommentForm({ obj }) {
     e.preventDefault();
     if (obj.firebaseKey) {
       updateComment(formInput)
-        .then(() => router.push(`/comment/${obj.firebaseKey}`));
+        .then(() => router.push('/'));
     } else {
-      const payload = { ...formInput, uid: user.uid, story_id: firebaseKey };
+      const payload = {
+        ...formInput, uid: user.uid, timestamp: time, name: user.displayName, story_id: firebaseKey,
+      };
       createComment(payload).then(({ name }) => {
         const patchPayload = { firebaseKey: name };
         updateComment(patchPayload).then(() => {
-          router.push('/');
+          onUpdate();
+          setFormInput(initialState);
         });
       });
     }
   };
+
   return (
-    <Form onSubmit={handleSubmit}>
-      <h2 className="text-white mt-5">{obj.firebaseKey ? 'Update' : 'Create'} Comment</h2>
+    <Card id="footer" style={{ height: '75px', width: '80%' }}>
+      <Form onSubmit={handleSubmit}>
+        <Stack direction="horizontal" gap={3}>
+          <FloatingLabel style={{ width: '70%' }} className="mb-3" label="Message" controlId="description">
+            <Form.Control
+              type="text"
+              placeholder="Write Your Message"
+              name="description"
+              value={formInput.description}
+              style={{ height: '75px' }}
+              onChange={handleChange}
+              required
+            />
+          </FloatingLabel>
 
-      {/* NAME INPUT  */}
-      <FloatingLabel controlId="floatingInput1" label="Name" className="mb-3">
-        <Form.Control
-          type="text"
-          placeholder="Enter a name"
-          name="name"
-          value={formInput.name}
-          onChange={handleChange}
-          required
-        />
-      </FloatingLabel>
-
-      {/* TIMESTAMP INPUT  */}
-      <FloatingLabel controlId="floatingInput2" label="Timestamp" className="mb-3">
-        <Form.Control
-          type="text"
-          placeholder="Enter an timestamp"
-          name="timestamp"
-          value={formInput.timestamp}
-          onChange={handleChange}
-          required
-        />
-      </FloatingLabel>
-
-      {/* DESCRIPTION INPUT  */}
-      <FloatingLabel controlId="floatingInput3" label="Description" className="mb-3">
-        <Form.Control
-          type="text"
-          placeholder="Enter description"
-          name="description"
-          value={formInput.description}
-          onChange={handleChange}
-          required
-        />
-      </FloatingLabel>
-
-      {/* SUBMIT BUTTON  */}
-      <Button type="submit">{obj.firebaseKey ? 'Update' : 'Create'} Comment</Button>
-    </Form>
+          <Button variant="primary" type="submit">{obj.firebaseKey ? 'Update' : 'Create'} Message
+          </Button>
+        </Stack>
+      </Form>
+    </Card>
   );
 }
 
 CommentForm.propTypes = {
   obj: PropTypes.shape({
-    name: PropTypes.string,
-    timestamp: PropTypes.string,
-    description: PropTypes.string,
+    message: PropTypes.string,
+    // channel_id: PropTypes.string,
     firebaseKey: PropTypes.string,
-    stor: PropTypes.string,
-    uid: PropTypes.string,
   }),
+  onUpdate: PropTypes.func,
 };
 
 CommentForm.defaultProps = {
   obj: initialState,
+  onUpdate: () => {},
 };
-
-export default CommentForm;
