@@ -32,7 +32,20 @@ const getSingleTopic = (firebaseKey) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+const getTopicStories = (topicFirebaseKey) => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/stories.json?orderBy="topic_id"&equalTo="${topicFirebaseKey}"`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'applications.json',
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => resolve(Object.values(data)))
+    .catch(reject);
+});
+
 export {
   getTopics,
   getSingleTopic,
+  getTopicStories,
 };
