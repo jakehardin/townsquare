@@ -21,7 +21,7 @@ export default function NavBar() {
               </Link>
             </li>
             <li className="nav-item">
-              <Link passHref href="/mystories">
+              <Link passHref href="/">
                 <a className="nav-link">
                   My Stories
                 </a>
