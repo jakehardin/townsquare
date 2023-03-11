@@ -105,14 +105,14 @@ function StoryForm({ obj }) {
       {/* TOPIC SELECT  */}
       <FloatingLabel controlId="floatingSelect" label="Topic">
         <Form.Select
-          aria-label="Author"
+          aria-label="topic"
           name="topic_id"
           onChange={handleChange}
           className="mb-3"
           value={obj.topic_id} // FIXME: modify code to remove error
           required
         >
-          <option value="">Select an Author</option>
+          <option value="">Select a #Topic</option>
           {
             topics.map((topic) => (
               <option
