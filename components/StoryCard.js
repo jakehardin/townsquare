@@ -13,7 +13,7 @@ export default function StoryCard({ storyObj, onUpdate }) {
   };
   return (
     <>
-      <Card style={{ width: '18rem', margin: '10px' }}>
+      <Card style={{ width: '25rem', margin: '10px' }}>
         <Card.Img variant="top" src={storyObj.image} alt={storyObj.title} style={{ height: '400px' }} />
         <Card.Body>
           <Card.Title>{storyObj.title}</Card.Title>

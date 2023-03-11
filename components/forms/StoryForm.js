@@ -51,12 +51,12 @@ function StoryForm({ obj }) {
       <h2 className="text-white mt-5">{obj.firebaseKey ? 'Update' : 'Create'} Story</h2>
 
       {/* TITLE INPUT  */}
-      <FloatingLabel controlId="floatingInput1" label="Name" className="mb-3">
+      <FloatingLabel controlId="floatingInput1" label="Title" className="mb-3">
         <Form.Control
           type="text"
-          placeholder="Enter a name"
-          name="name"
-          value={formInput.name}
+          placeholder="Enter a title"
+          name="title"
+          value={formInput.title}
           onChange={handleChange}
           required
         />

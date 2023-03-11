@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
+import Link from 'next/link';
 import { Button } from 'react-bootstrap';
-import Image from 'next/image';
 import { getMyStories } from '../api/storiesData';
 import StoryCard from '../components/StoryCard';
 import { useAuth } from '../utils/context/authContext';
-import { signOut } from '../utils/auth';
 
-export default function Profile() {
+export default function MyStories() {
   const [stories, setStories] = useState([]);
   const { user } = useAuth();
 
@@ -18,15 +17,10 @@ export default function Profile() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
-
     <div className="text-center my-4">
-      <div className="text-center my-4">
-        <Button variant="danger" onClick={signOut}> Sign Out</Button>
-        <div className="text-center my-4">
-          <Image src={user.photoURL} alt="userURL" width="100px" height="100px" />
-          <h1>{user.displayName}</h1>
-        </div>
-      </div>
+      <Link href="/story/new" passHref>
+        <Button>+ Add A Story</Button>
+      </Link>
       <div className="d-flex flex-wrap">
         {/* TODO: map over books here using BookCard component */}
         {stories.map((story) => (

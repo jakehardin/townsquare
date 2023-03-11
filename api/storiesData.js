@@ -20,6 +20,24 @@ const getStories = () => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+const getMyStories = (uid) => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/stories.json?orderBy="uid"&equalTo="${uid}"`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      if (data) {
+        resolve(Object.values(data));
+      } else {
+        resolve([]);
+      }
+    })
+    .catch(reject);
+});
+
 const getSingleStory = (firebaseKey) => new Promise((resolve, reject) => {
   fetch(`${endpoint}/stories/${firebaseKey}.json`, {
     method: 'GET',
@@ -89,4 +107,5 @@ export {
   updateStory,
   deleteStory,
   getStoryComments,
+  getMyStories,
 };

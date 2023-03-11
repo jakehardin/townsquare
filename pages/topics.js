@@ -3,7 +3,7 @@ import { useAuth } from '../utils/context/authContext';
 import { getTopics } from '../api/topicsData';
 import TopicCard from '../components/TopicCard';
 
-export default function ShowAuthors() {
+export default function ShowTopics() {
   const [topics, setTopics] = useState([]);
   const { user } = useAuth();
 

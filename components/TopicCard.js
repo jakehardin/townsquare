@@ -10,7 +10,7 @@ export default function TopicCard({ topicObj }) {
       <Card style={{ width: '18rem', margin: '10px' }}>
         <Card.Body>
           <Card.Title>{topicObj.topic_name}</Card.Title>
-          <Link href="/" passHref>
+          <Link href={`/topic/${topicObj.firebaseKey}`} passHref>
             <Button>View Stories</Button>
           </Link>
         </Card.Body>
