@@ -1,11 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Button, Card } from 'react-bootstrap';
+import {
+  Button, Card, DropdownButton, Dropdown,
+} from 'react-bootstrap';
 import Link from 'next/link';
 // eslint-disable-next-line import/named
 import { deleteStory } from '../api/storiesData';
 
-export default function StoryCard({ storyObj, onUpdate }) {
+export default function StoryCard({ storyObj, onUpdate, isMine }) {
   const deleteThisStory = () => {
     if (window.confirm(`Delete ${storyObj.title}?`)) {
       deleteStory(storyObj.firebaseKey).then(() => onUpdate());
@@ -21,13 +23,14 @@ export default function StoryCard({ storyObj, onUpdate }) {
           <Link href={`/story/${storyObj.firebaseKey}`} passHref>
             <Button variant="primary" className="m-2">VIEW</Button>
           </Link>
-          {/* DYNAMIC LINK TO EDIT THE Author DETAILS  */}
-          <Link href={`/story/edit/${storyObj.firebaseKey}`} passHref>
-            <Button variant="info">EDIT</Button>
-          </Link>
-          <Button variant="danger" onClick={deleteThisStory} className="m-2">
-            DELETE
-          </Button>
+          {isMine
+            ? (
+              <DropdownButton className="position-absolute top-0 end-0" id="dropdown-basic-button" title="" size="sm" variant="light">
+                <Dropdown.Item href={`/story/edit/${storyObj.firebaseKey}`}>Edit</Dropdown.Item>
+                <Dropdown.Item onClick={deleteThisStory}>Delete</Dropdown.Item>
+              </DropdownButton>
+            )
+            : ('')}
         </Card.Body>
       </Card>
     </>
@@ -45,4 +48,5 @@ StoryCard.propTypes = {
     uid: PropTypes.string,
   }).isRequired,
   onUpdate: PropTypes.func.isRequired,
+  isMine: PropTypes.bool.isRequired,
 };

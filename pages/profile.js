@@ -30,7 +30,7 @@ export default function Profile() {
       <div className="d-flex flex-wrap">
         {/* TODO: map over books here using BookCard component */}
         {stories.map((story) => (
-          <StoryCard key={story.firebaseKey} storyObj={story} onUpdate={getAllStories} />
+          <StoryCard key={story.firebaseKey} storyObj={story} onUpdate={getAllStories} isMine={story.uid === user.uid} />
         ))}
       </div>
 
