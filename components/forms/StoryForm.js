@@ -52,7 +52,7 @@ function StoryForm({ obj }) {
   };
   return (
     <Form onSubmit={handleSubmit}>
-      <h2 className="text-white mt-5">{obj.firebaseKey ? 'Update' : 'Create'} Story</h2>
+      <h2 className="text-white mt-5">{obj.firebaseKey ? 'Did you spell something wrong?' : 'Create'} </h2>
 
       {/* TITLE INPUT  */}
       <FloatingLabel controlId="floatingInput1" label="Title" className="mb-3">
