@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Form from 'react-bootstrap/Form';
 import { Button } from 'react-bootstrap';
+import { getTopics } from '../../api/topicsData';
 import { useAuth } from '../../utils/context/authContext';
 import { createStory, updateStory } from '../../api/storiesData';
 
@@ -16,10 +17,13 @@ const initialState = {
 
 function StoryForm({ obj }) {
   const [formInput, setFormInput] = useState(initialState);
+  const [topics, setTopics] = useState([]);
   const router = useRouter();
   const { user } = useAuth();
 
   useEffect(() => {
+    getTopics(user.uid).then(setTopics);
+
     if (obj.firebaseKey) setFormInput(obj);
   }, [obj, user]);
 
@@ -98,16 +102,28 @@ function StoryForm({ obj }) {
         />
       </FloatingLabel>
 
-      {/* TOPIC INPUT  */}
-      <FloatingLabel controlId="floatingInput3" label="Topic Select" className="mb-3">
-        <Form.Control
-          type="text"
-          placeholder="Topic Select"
+      {/* TOPIC SELECT  */}
+      <FloatingLabel controlId="floatingSelect" label="Topic">
+        <Form.Select
+          aria-label="topic"
           name="topic_id"
-          value={formInput.topic_id}
           onChange={handleChange}
+          className="mb-3"
+          value={obj.topic_id} // FIXME: modify code to remove error
           required
-        />
+        >
+          <option value="">Select a #Topic</option>
+          {
+            topics.map((topic) => (
+              <option
+                key={topic.firebaseKey}
+                value={topic.firebaseKey}
+              >
+                {topic.topic_name}
+              </option>
+            ))
+          }
+        </Form.Select>
       </FloatingLabel>
 
       {/* SUBMIT BUTTON  */}

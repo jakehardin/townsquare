@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Card from 'react-bootstrap/Card';
-import Button from 'react-bootstrap/Button';
+import {
+  Card, DropdownButton, Dropdown,
+} from 'react-bootstrap';
 import { deleteComment } from '../api/commentsData';
 
-function CommentCard({ commentObj, onUpdate }) {
+function CommentCard({ commentObj, onUpdate, isMine }) {
   const deleteThisComment = () => {
     if (window.confirm(`Delete ${commentObj.name}?`)) {
       deleteComment(commentObj.firebaseKey).then(() => onUpdate());
@@ -15,9 +16,13 @@ function CommentCard({ commentObj, onUpdate }) {
       <Card.Body>
         <Card.Title>{commentObj.name}</Card.Title>
         <Card.Text>{commentObj.description}</Card.Text>
-        <Button variant="danger" onClick={deleteThisComment} className="m-2">
-          DELETE
-        </Button>
+        {isMine
+          ? (
+            <DropdownButton className="position-absolute top-0 end-0" id="dropdown-basic-button" title="" size="sm" variant="light">
+              <Dropdown.Item onClick={deleteThisComment}>Delete</Dropdown.Item>
+            </DropdownButton>
+          )
+          : ('')}
       </Card.Body>
     </Card>
   );
@@ -33,6 +38,7 @@ CommentCard.propTypes = {
     story_id: PropTypes.string,
   }).isRequired,
   onUpdate: PropTypes.func.isRequired,
+  isMine: PropTypes.bool.isRequired,
 };
 
 export default CommentCard;
