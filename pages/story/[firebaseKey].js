@@ -3,9 +3,12 @@ import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { viewPostDetails } from '../../api/mergedData';
 import CommentCard from '../../components/CommentCard';
+import CommentForm from '../../components/forms/CommentForm';
+import { useAuth } from '../../utils/context/authContext';
 
 export default function ViewPost() {
   const [postDetails, setPostDetails] = useState({});
+  const { user } = useAuth();
   const router = useRouter();
   const { firebaseKey } = router.query;
 
@@ -40,8 +43,14 @@ export default function ViewPost() {
       </div>
       <div className="d-flex flex-wrap">
         {postDetails.comments?.map((comment) => (
-          <CommentCard key={comment.story_id} commentObj={comment} onUpdate={seeThePostDetails} />
+          <CommentCard key={comment.story_id} commentObj={comment} onUpdate={seeThePostDetails} isMine={comment.uid === user.uid} />
         ))}
+      </div>
+      <div style={{
+        backgroundColor: '#F8F8F8',
+      }}
+      >
+        <CommentForm onUpdate={seeThePostDetails} />
       </div>
     </>
   );
