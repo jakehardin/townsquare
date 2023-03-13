@@ -21,8 +21,9 @@ export default function StoryCard({ storyObj, onUpdate, isMine }) {
           <Card.Title>{storyObj.title}</Card.Title>
           <Card.Text>{storyObj.location}</Card.Text>
           <Card.Text>{storyObj.name}</Card.Text>
+          <Card.Subtitle>{storyObj.timestamp}</Card.Subtitle>
           <Link href={`/story/${storyObj.firebaseKey}`} passHref>
-            <Button variant="primary" className="m-2">VIEW</Button>
+            <Button variant="primary" className="m-2">Read Story</Button>
           </Link>
           {isMine
             ? (
@@ -48,6 +49,7 @@ StoryCard.propTypes = {
     title: PropTypes.string,
     uid: PropTypes.string,
     name: PropTypes.string,
+    topic_id: PropTypes.string,
   }).isRequired,
   onUpdate: PropTypes.func.isRequired,
   isMine: PropTypes.bool.isRequired,

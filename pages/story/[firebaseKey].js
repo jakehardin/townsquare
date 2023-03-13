@@ -43,6 +43,12 @@ export default function ViewPost() {
           <h5>
             {postDetails.description}
           </h5>
+          <h5>
+            {postDetails.timestamp}
+          </h5>
+          <h5>
+            {postDetails.name}
+          </h5>
         </div>
       </div>
       <div className="d-flex flex-wrap">

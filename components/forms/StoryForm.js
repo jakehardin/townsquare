@@ -21,6 +21,14 @@ function StoryForm({ obj }) {
   const router = useRouter();
   const { user } = useAuth();
 
+  const time = new Date().toLocaleString('en-US', {
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+    hour: 'numeric',
+    minute: '2-digit',
+  });
+
   useEffect(() => {
     getTopics(user.uid).then(setTopics);
 
@@ -41,7 +49,9 @@ function StoryForm({ obj }) {
       updateStory(formInput)
         .then(() => router.push(`/story/${obj.firebaseKey}`));
     } else {
-      const payload = { ...formInput, uid: user.uid, name: user.displayName };
+      const payload = {
+        ...formInput, uid: user.uid, name: user.displayName, timestamp: time,
+      };
       createStory(payload).then(({ name }) => {
         const patchPayload = { firebaseKey: name };
         updateStory(patchPayload).then(() => {
@@ -109,7 +119,7 @@ function StoryForm({ obj }) {
           name="topic_id"
           onChange={handleChange}
           className="mb-3"
-          value={obj.topic_id} // FIXME: modify code to remove error
+          value={formInput.topic_id} // FIXME: modify code to remove error
           required
         >
           <option value="">Select a #Topic</option>
