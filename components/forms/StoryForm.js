@@ -41,7 +41,7 @@ function StoryForm({ obj }) {
       updateStory(formInput)
         .then(() => router.push(`/story/${obj.firebaseKey}`));
     } else {
-      const payload = { ...formInput, uid: user.uid };
+      const payload = { ...formInput, uid: user.uid, name: user.displayName };
       createStory(payload).then(({ name }) => {
         const patchPayload = { firebaseKey: name };
         updateStory(patchPayload).then(() => {
