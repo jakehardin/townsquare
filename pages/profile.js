@@ -20,7 +20,7 @@ export default function Profile() {
   return (
 
     <div className="text-center my-4">
-      <div className="text-center my-4">
+      <div className="text-right my-4">
         <Button variant="danger" onClick={signOut}> Sign Out</Button>
         <div className="text-center my-4">
           <Image src={user.photoURL} alt="userURL" width="100px" height="100px" />

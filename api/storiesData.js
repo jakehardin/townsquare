@@ -100,6 +100,18 @@ const getStoryComments = (storyFirebaseKey) => new Promise((resolve, reject) => 
     .catch(reject);
 });
 
+const getStoryTopic = (topicFirebaseKey) => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/stories.json?orderBy="topic_id"&equalTo="${topicFirebaseKey}"`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'applications.json',
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => resolve(Object.values(data)))
+    .catch(reject);
+});
+
 export {
   getStories,
   getSingleStory,
@@ -108,4 +120,5 @@ export {
   deleteStory,
   getStoryComments,
   getMyStories,
+  getStoryTopic,
 };

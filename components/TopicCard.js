@@ -7,7 +7,7 @@ import Link from 'next/link';
 export default function TopicCard({ topicObj }) {
   return (
     <>
-      <Card style={{ width: '18rem', margin: '10px' }}>
+      <Card style={{ width: '18rem', margin: '50px' }}>
         <Card.Body>
           <Card.Title>{topicObj.topic_name}</Card.Title>
           <Link href={`/topic/${topicObj.firebaseKey}`} passHref>

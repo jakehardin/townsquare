@@ -15,5 +15,15 @@ const viewTopicStories = (topicFirebaseKey) => new Promise((resolve, reject) => 
     }).catch((error) => reject(error));
 });
 
+const viewStoryTopic = (storyFirebaseKey) => new Promise((resolve, reject) => {
+  getSingleStory(storyFirebaseKey)
+    .then((storyObject) => {
+      getSingleTopic(storyObject.topic_id)
+        .then((topicObject) => {
+          resolve({ topicObject, ...storyObject });
+        });
+    }).catch((error) => reject(error));
+});
+
 // eslint-disable-next-line import/prefer-default-export
-export { viewPostDetails, viewTopicStories };
+export { viewPostDetails, viewTopicStories, viewStoryTopic };

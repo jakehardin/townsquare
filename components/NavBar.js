@@ -8,40 +8,35 @@ import { useAuth } from '../utils/context/authContext';
 export default function NavBar() {
   const { user } = useAuth();
   return (
-    <nav className="navbar navbar-expand-md navbar-dark bg-dark">
-      <div className="container-fluid">
-
-        <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
-          <ul className="navbar-nav me-auto">
-            <li className="nav-item">
-              <Link passHref href="/">
-                <a className="navbar-brand">
-                  TownSquare
-                </a>
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link passHref href="/mystories">
-                <a className="nav-link">
-                  My Stories
-                </a>
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link passHref href="/topics">
-                <a className="nav-link">
-                  Topics
-                </a>
-              </Link>
-            </li>
-            <Link passHref href="/profile">
-              <Navbar.Brand className="navbar-brand" style={{ marginLeft: '1050px' }}>
-                <Image src={user.photoURL} alt="userURL" width="40%" height="40%" id="navbar-profile-image" />
-              </Navbar.Brand>
-            </Link>
-          </ul>
-        </div>
+    <Navbar className="sidebar d-flex flex-column left-sidebar" expand="lg" id="sidebar">
+      <div>
+        <Link passHref href="/profile">
+          <Navbar.Brand className="navbar-brand" style={{ marginLeft: '10px' }}>
+            <Image src={user.photoURL} alt="userURL" width="40%" height="40%" id="navbar-profile-image" />
+          </Navbar.Brand>
+        </Link>
       </div>
-    </nav>
+      <div>
+        <Link passHref href="/">
+          <a className="navbar-brand">
+            TownSquare
+          </a>
+        </Link>
+      </div>
+      <div>
+        <Link passHref href="/mystories">
+          <a className="nav-link">
+            My Stories
+          </a>
+        </Link>
+      </div>
+      <div>
+        <Link passHref href="/topics">
+          <a className="nav-link">
+            Topics
+          </a>
+        </Link>
+      </div>
+    </Navbar>
   );
 }
