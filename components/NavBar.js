@@ -10,17 +10,17 @@ export default function NavBar() {
   return (
     <Navbar className="sidebar d-flex flex-column left-sidebar" expand="lg" id="sidebar">
       <div>
-        <Link passHref href="/profile">
-          <Navbar.Brand className="navbar-brand" style={{ marginLeft: '10px' }}>
-            <Image src={user.photoURL} alt="userURL" width="40%" height="40%" id="navbar-profile-image" />
-          </Navbar.Brand>
-        </Link>
-      </div>
-      <div>
         <Link passHref href="/">
           <a className="navbar-brand">
             TownSquare
           </a>
+        </Link>
+      </div>
+      <div>
+        <Link passHref href="/profile">
+          <Navbar.Brand className="navbar-brand" style={{ marginLeft: '10px' }}>
+            <Image src={user.photoURL} alt="userURL" width="40%" height="40%" id="navbar-profile-image" />
+          </Navbar.Brand>
         </Link>
       </div>
       <div>
