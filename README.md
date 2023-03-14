@@ -1,4 +1,4 @@
-# Baby Got Slack [![Netlify Status](https://api.netlify.com/api/v1/badges/9e98dcd5-de31-4bd3-bcf5-4e794ff0ed97/deploy-status)](https://app.netlify.com/sites/the-town-square/deploys)
+# TownSquare [![Netlify Status](https://api.netlify.com/api/v1/badges/9e98dcd5-de31-4bd3-bcf5-4e794ff0ed97/deploy-status)](https://app.netlify.com/sites/the-town-square/deploys)
 <!-- update the netlify badge above with your own badge that you can find at netlify under settings/general#status-badges -->
 
 This is an application I made for NSS.
