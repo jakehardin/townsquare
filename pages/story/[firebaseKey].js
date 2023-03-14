@@ -38,16 +38,16 @@ export default function ViewPost() {
             {postDetails.title}
           </h1>
           <h5>
-            {postDetails.location}
-          </h5>
-          <h5>
-            {postDetails.description}
-          </h5>
-          <h5>
             {postDetails.timestamp}
           </h5>
           <h5>
             {postDetails.name}
+          </h5>
+          <h5>
+            {postDetails.location}
+          </h5>
+          <h5>
+            {postDetails.description}
           </h5>
         </div>
       </div>

@@ -15,6 +15,7 @@ function CommentCard({ commentObj, onUpdate, isMine }) {
     <Card id="message-card" className="border-0 hover-overlay ripple shadow-1-strong" style={{ width: '91%', margin: '10px' }}>
       <Card.Body>
         <Card.Title>{commentObj.name}</Card.Title>
+        <Card.Subtitle>{commentObj.timestamp}</Card.Subtitle>
         <Card.Text>{commentObj.description}</Card.Text>
         {isMine
           ? (
