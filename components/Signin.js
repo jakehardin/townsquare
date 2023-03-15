@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import React from 'react';
 import { signIn } from '../utils/auth';
 
@@ -12,7 +13,9 @@ function Signin() {
         margin: '0 auto',
       }}
     >
-      <h1>Welcome to TownSquare!</h1>
+      <div>
+        <img src="images/townsquare.png" width="75%" height="75%" alt="townsquare" />
+      </div>
       <p>Click the button below to login!</p>
       <button type="button" className="btn btn-primary btn-lg copy-btn" onClick={signIn}>
         Sign In
