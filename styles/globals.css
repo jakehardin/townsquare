@@ -50,3 +50,15 @@ body {
   padding-left: 150px;
   margin-bottom: 75px;
 }
+
+#signin {
+  background-color: #f6c900;
+  position: absolute;
+  top: 10px;
+  left: 500px;
+  bottom: 0;
+}
+
+.profile-image {
+padding: 1rem;
+}
