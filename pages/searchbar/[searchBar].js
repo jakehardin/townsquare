@@ -4,23 +4,23 @@ import { getStories } from '../../api/storiesData';
 import StoryCard from '../../components/StoryCard';
 
 export default function SearchBar() {
-  const [searchMessages, setSearchMessages] = useState([]);
+  const [searchStories, setSearchStories] = useState([]);
 
   const router = useRouter();
   const { searchBar } = router.query;
 
-  const searchAllMessages = () => {
-    getStories().then((messages) => {
-      const filteredMessages = messages.filter((message) => message.message.toLowerCase().includes(searchBar) || message.name.toLowerCase().includes(searchBar) || message.timestamp.includes(searchBar));
+  const searchAllStories = () => {
+    getStories().then((stories) => {
+      const filteredStories = stories.filter((story) => story.title.toLowerCase().includes(searchBar) || story.description.toLowerCase().includes(searchBar) || story.location.includes(searchBar));
 
-      setSearchMessages(filteredMessages);
+      setSearchStories(filteredStories);
     });
   };
 
   useEffect(() => {
-    searchAllMessages();
+    searchAllStories();
     return () => {
-      setSearchMessages([]);
+      setSearchStories([]);
     };
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchBar]);
@@ -28,7 +28,7 @@ export default function SearchBar() {
   return (
     <>
       <div>
-        {searchMessages.map((aim) => <StoryCard key={aim.firebaseKey} messageObj={aim} onUpdate={searchAllMessages} />)}
+        {searchStories.map((aim) => <StoryCard key={aim.firebaseKey} storyObj={aim} onUpdate={searchAllStories} />)}
       </div>
     </>
   );

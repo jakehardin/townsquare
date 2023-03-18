@@ -19,7 +19,7 @@ export default function SearchBar() {
 
   return (
     <Form className="searchbar" onSubmit={handleSubmit}>
-      <FormControl type="text" placeholder="Search Baby Got Slack" onChange={handleChange} value={searchBar} style={{ width: '700px' }} />
+      <FormControl type="text" placeholder="Search Stories" onChange={handleChange} value={searchBar} style={{ width: '130px' }} />
     </Form>
   );
 }
