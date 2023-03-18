@@ -58,3 +58,7 @@ body {
   left: 500px;
   bottom: 0;
 }
+
+.profile-image {
+padding: 1rem;
+}
