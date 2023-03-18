@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { Navbar } from 'react-bootstrap';
 import Image from 'next/image';
 import { useAuth } from '../utils/context/authContext';
+// import SearchBar from './SearchBar';
 
 export default function NavBar() {
   const { user } = useAuth();
@@ -23,6 +24,7 @@ export default function NavBar() {
           </Navbar.Brand>
         </Link>
       </div>
+      {/* <div><SearchBar /></div> */}
       <div>
         <Link passHref href="/mystories">
           <a className="nav-link">
