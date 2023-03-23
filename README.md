@@ -12,7 +12,19 @@ This is an application I made for NSS.
           </h5>
 ```
 ## About the User <!-- This is a scaled down user persona -->
-- 
+- As a journalist, I want to be able to create a new article on the website, so that I can publish my work and reach a wider audience.
+
+- As a user, I want to be able to browse articles on the website by topic, so that I can find articles that are relevant to my interests.
+
+- As a user, I want to be able to leave comments on articles, so that I can share my thoughts and engage with other users.
+
+- As a journalist, I want to be able to edit and update my articles after they have been published, so that I can make corrections or add additional information.
+
+- As a user, I want to be able to filter articles by author, so that I can find articles by my favorite journalists.
+
+- As a user, I want to be able to share articles on social media, so that I can help spread the word about important news and stories.
+
+- As a journalist, I want to be able to see a list of all of my published articles on the website, so that I can keep track of my work and use it as a portfolio.
 
 ## Features <!-- List your app features using bullets! Do NOT use a paragraph. No one will read that! -->
 - 
