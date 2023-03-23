@@ -60,13 +60,13 @@ export default function CommentForm({ obj, onUpdate }) {
   };
 
   return (
-    <Card id="footer" style={{ height: '75px', width: '80%' }}>
+    <Card id="footer" style={{ height: '75px', width: '100%' }}>
       <Form onSubmit={handleSubmit}>
         <Stack direction="horizontal" gap={3}>
-          <FloatingLabel style={{ width: '70%' }} className="mb-3" label="Message" controlId="description">
+          <FloatingLabel style={{ width: '90%' }} className="mb-3" label="Comment" controlId="description">
             <Form.Control
               type="text"
-              placeholder="Write Your Message"
+              placeholder="Send"
               name="description"
               value={formInput.description}
               style={{ height: '75px' }}
@@ -75,7 +75,7 @@ export default function CommentForm({ obj, onUpdate }) {
             />
           </FloatingLabel>
 
-          <Button variant="primary" type="submit">{obj.firebaseKey ? 'Update' : 'Create'} Message
+          <Button variant="dark" type="submit"> Send
           </Button>
         </Stack>
       </Form>

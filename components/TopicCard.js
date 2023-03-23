@@ -11,7 +11,7 @@ export default function TopicCard({ topicObj }) {
         <Card.Body>
           <Card.Title>{topicObj.topic_name}</Card.Title>
           <Link href={`/topic/${topicObj.firebaseKey}`} passHref>
-            <Button>View Stories</Button>
+            <Button variant="dark">View Stories</Button>
           </Link>
         </Card.Body>
       </Card>
