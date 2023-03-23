@@ -27,30 +27,35 @@ export default function ViewPost() {
   return (
     <>
       <div className="mt-5 d-flex flex-wrap">
-        <div className="d-flex">
-          <img src={postDetails.image} alt={postDetails.title} style={{ height: '200px' }} />
+        <div className="">
+          <h1>
+            {postDetails.title}
+          </h1>
+          <img src={postDetails.image} alt={postDetails.title} style={{ height: '500px' }} />
           <h5>
             {topic.topicObject?.topic_name}
           </h5>
         </div>
-        <div className="text-white ms-5 details">
-          <h1>
-            {postDetails.title}
-          </h1>
-          <h5>
-            {postDetails.timestamp}
-          </h5>
+        <div className="">
+          <div className="d-flex">
+            <h5>
+              {postDetails.location}
+            </h5>
+          </div>
+          <div className="d-flex">
+            <h5>
+              {postDetails.timestamp}
+            </h5>
+          </div>
           <h5>
             {postDetails.name}
           </h5>
-          <h5>
-            {postDetails.location}
-          </h5>
-          <h5>
+          <h5 style={{ fontWeight: 'bold' }}>
             {postDetails.description}
           </h5>
         </div>
       </div>
+      <hr />
       <div className="d-flex flex-wrap">
         {postDetails.comments?.map((comment) => (
           <CommentCard key={comment.story_id} commentObj={comment} onUpdate={seeThePostDetails} isMine={comment.uid === user.uid} />

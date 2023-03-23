@@ -17,17 +17,18 @@ export default function MainPage() {
     getAllStories();
   }, []);
   return (
-    <div className="text-center my-4">
+    <div>
       <Link href="/story/new" passHref>
-        <Button>+ Add A Story</Button>
+        <Button variant="light" className="m-2">+ Add A Story</Button>
       </Link>
-      <div className="d-flex flex-wrap">
-        {/* TODO: map over books here using BookCard component */}
-        {stories.map((story) => (
-          <StoryCard key={story.firebaseKey} storyObj={story} onUpdate={getAllStories} isMine={story.uid === user.uid} />
-        ))}
-      </div>
+      <div className="mr-3 m-4">
+        <div className="d-flex flex-wrap">
+          {stories.map((story) => (
+            <StoryCard key={story.firebaseKey} storyObj={story} onUpdate={getAllStories} isMine={story.uid === user.uid} />
+          ))}
+        </div>
 
+      </div>
     </div>
   );
 }
