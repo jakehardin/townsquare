@@ -15,10 +15,10 @@ export default function StoryCard({ storyObj, onUpdate, isMine }) {
   };
   return (
     <>
-      <Card style={{ width: '23rem', margin: '8px', height: '600px' }}>
+      <Card style={{ width: '35rem', margin: '8px', height: '600px' }}>
         <Card.Img variant="top" src={storyObj.image} alt={storyObj.title} style={{ height: '400px' }} />
         <Card.Body>
-          <Card.Title>{storyObj.title}</Card.Title>
+          <Card.Title style={{ fontWeight: 'bold' }}>{storyObj.title}</Card.Title>
           <Card.Text>{storyObj.location}</Card.Text>
           <Card.Text className="text-muted">{storyObj.name}</Card.Text>
           <Card.Subtitle className="text-muted">{storyObj.timestamp}</Card.Subtitle>

@@ -26,7 +26,7 @@ export default function ViewPost() {
 
   return (
     <>
-      <div className="mt-5 d-flex flex-wrap">
+      <div className="mt-3 flex-wrap">
         <div className="">
           <h1>
             {postDetails.title}
