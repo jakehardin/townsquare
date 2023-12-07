@@ -1,44 +1,46 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
-import Link from 'next/link';
-import { Navbar } from 'react-bootstrap';
-import Image from 'next/image';
-import { useAuth } from '../utils/context/authContext';
-import SearchBar from './SearchBar';
+import { HiOutlineBuildingLibrary } from 'react-icons/hi2';
+import { CgProfile } from 'react-icons/cg';
+import { HiOutlineNewspaper } from 'react-icons/hi';
+import { MdManageSearch } from 'react-icons/md';
+import { useRouter } from 'next/router';
 
 export default function NavBar() {
-  const { user } = useAuth();
+  const router = useRouter();
   return (
-    <Navbar className="sidebar d-flex flex-column left-sidebar" expand="lg" id="sidebar">
-      <div>
-        <Link passHref href="/">
-          <Navbar.Brand className="nav-link" style={{ marginLeft: '10px' }}>
-            <Image src="https://is5-ssl.mzstatic.com/image/thumb/Purple118/v4/9f/26/8d/9f268dd4-327b-b179-215d-3068eb35d5de/source/512x512bb.jpg" alt="userURL" width="60%" height="60%" id="" />
-          </Navbar.Brand>
-        </Link>
-      </div>
-      <SearchBar />
-      <div>
-        <Link passHref href="/profile">
-          <Navbar.Brand className="nav-link" style={{ marginLeft: '10px' }}>
-            <Image src={user.photoURL} alt="userURL" width="40%" height="40%" id="navbar-profile-image" />
-          </Navbar.Brand>
-        </Link>
+    <div className="fixed top-0 left-0 h-screen w-16 m-0 flex flex-col bg-gray-900 text-white shadow-lg">
+      <div className="sidebar-icon">
+        <button type="button" className="" onClick={() => router.push('/')}>
+          <SideBarIcon icon={<HiOutlineBuildingLibrary size="32" />} />
+        </button>
       </div>
       <div>
-        <Link passHref href="/mystories">
-          <a className="nav-link">
-            My Stories
-          </a>
-        </Link>
+        <button type="button" className="sidebar-icon" onClick={() => router.push('/profile')}>
+          <SideBarIcon icon={<CgProfile size="32" />} />
+        </button>
       </div>
       <div>
-        <Link passHref href="/topics">
-          <a className="nav-link">
-            Topics
-          </a>
-        </Link>
+        <button type="button" className="sidebar-icon" onClick={() => router.push('/mystories')}>
+          <SideBarIcon icon={<HiOutlineNewspaper size="32" />} />
+        </button>
       </div>
-    </Navbar>
+      <div>
+        <button type="button" className="sidebar-icon" onClick={() => router.push('/topics')}>
+          <SideBarIcon icon={<MdManageSearch size="32" />} />
+        </button>
+      </div>
+    </div>
   );
 }
+
+// eslint-disable-next-line react/prop-types
+const SideBarIcon = ({ icon, text = 'tooltip💡' }) => (
+  <div className="sidebar-icon group">
+    {icon}
+
+    <span className="sidebar-tooltip group-hover:scale-100">
+      {text}
+    </span>
+  </div>
+);

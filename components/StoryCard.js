@@ -23,7 +23,7 @@ export default function StoryCard({ storyObj, onUpdate, isMine }) {
           <Card.Text className="text-muted">{storyObj.name}</Card.Text>
           <Card.Subtitle className="text-muted">{storyObj.timestamp}</Card.Subtitle>
           <Link href={`/story/${storyObj.firebaseKey}`} passHref>
-            <Button variant="info" className="position-absolute top-0">Read Story!</Button>
+            <Button variant="info" className="">Read Story!</Button>
           </Link>
           {isMine
             ? (
