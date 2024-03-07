@@ -10,22 +10,22 @@ export default function NavBar() {
   return (
     <div className="fixed top-0 left-0 h-screen w-16 m-0 flex flex-col bg-gray-900 text-white shadow-lg" style={{ paddingTop: '50px' }}>
       <div className="sidebar-icon">
-        <button type="button" className="" onClick={() => router.push('/')}>
+        <button type="button" label="home-button" className="sidebar-icon" onClick={() => router.push('/')}>
           <SideBarIcon icon={<HiOutlineBuildingLibrary size="32" />} />
         </button>
       </div>
       <div>
-        <button type="button" className="sidebar-icon" onClick={() => router.push('/profile')}>
+        <button type="button" label="profile-button" className="sidebar-icon" onClick={() => router.push('/profile')}>
           <SideBarIcon icon={<CgProfile size="32" />} />
         </button>
       </div>
       <div>
-        <button type="button" className="sidebar-icon" onClick={() => router.push('/mystories')}>
+        <button type="button" label="mystories-button" className="sidebar-icon" onClick={() => router.push('/mystories')}>
           <SideBarIcon icon={<HiOutlineNewspaper size="32" />} />
         </button>
       </div>
       <div>
-        <button type="button" className="sidebar-icon" onClick={() => router.push('/topics')}>
+        <button type="button" label="topics-button" className="sidebar-icon" onClick={() => router.push('/topics')}>
           <SideBarIcon icon={<MdManageSearch size="32" />} />
         </button>
       </div>
