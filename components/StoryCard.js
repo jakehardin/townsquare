@@ -4,7 +4,6 @@ import {
   Button, Card, DropdownButton, Dropdown,
 } from 'react-bootstrap';
 import Link from 'next/link';
-// eslint-disable-next-line import/named
 import { deleteStory } from '../api/storiesData';
 
 export default function StoryCard({ storyObj, onUpdate, isMine }) {
@@ -13,29 +12,34 @@ export default function StoryCard({ storyObj, onUpdate, isMine }) {
       deleteStory(storyObj.firebaseKey).then(() => onUpdate());
     }
   };
+
   return (
-    <>
-      <Card style={{ width: '35rem', margin: '8px', height: '600px' }}>
-        <Card.Img variant="top" src={storyObj.image} alt={storyObj.title} style={{ height: '400px' }} />
-        <Card.Body>
-          <Card.Title style={{ fontWeight: 'bold' }}>{storyObj.title}</Card.Title>
-          <Card.Text>{storyObj.location}</Card.Text>
-          <Card.Text className="text-muted">{storyObj.name}</Card.Text>
-          <Card.Subtitle className="text-muted">{storyObj.timestamp}</Card.Subtitle>
-          <Link href={`/story/${storyObj.firebaseKey}`} passHref>
-            <Button variant="info" className="">Read Story!</Button>
-          </Link>
-          {isMine
-            ? (
-              <DropdownButton className="position-absolute top-0 end-0" id="dropdown-basic-button" title="" size="sm" variant="light">
-                <Dropdown.Item href={`/story/edit/${storyObj.firebaseKey}`}>Edit</Dropdown.Item>
-                <Dropdown.Item onClick={deleteThisStory}>Delete</Dropdown.Item>
-              </DropdownButton>
-            )
-            : ('')}
-        </Card.Body>
-      </Card>
-    </>
+    <Card className="shadow mb-5 bg-white rounded" style={{ width: '100%', height: '600px' }}>
+      <Card.Img variant="top" src={storyObj.image} alt={storyObj.title} style={{ height: '400px', objectFit: 'cover' }} />
+      <Card.Body>
+        <Card.Title className="fw-bold h4">{storyObj.title}</Card.Title>
+        <Card.Text className="mb-2">{storyObj.location}</Card.Text>
+        <Card.Text className="text-muted mb-2">{storyObj.name}</Card.Text>
+        <Card.Subtitle className="text-muted mb-3">{storyObj.timestamp}</Card.Subtitle>
+        <Link href={`/story/${storyObj.firebaseKey}`} passHref>
+          <Button variant="info" className="me-3">
+            Read Story
+          </Button>
+        </Link>
+        {isMine && (
+          <DropdownButton
+            className="position-absolute top-0 end-0"
+            id="dropdown-basic-button"
+            title=""
+            size="sm"
+            variant="light"
+          >
+            <Dropdown.Item href={`/story/edit/${storyObj.firebaseKey}`}>Edit</Dropdown.Item>
+            <Dropdown.Item onClick={deleteThisStory}>Delete</Dropdown.Item>
+          </DropdownButton>
+        )}
+      </Card.Body>
+    </Card>
   );
 }
 
